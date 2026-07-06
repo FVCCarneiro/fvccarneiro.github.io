@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francisco Carneiro — Senior Data Engineer</title>
+<meta name="description" content="Francisco Carneiro — Senior Data Engineer. Cloud data platforms, scalable systems, and data architecture, with a growing focus on AI and ML.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F9;
+    --panel:#FFFFFF;
+    --ink:#14161B;
+    --ink-2:#2B303A;
+    --muted:#59616E;
+    --faint:#8B93A1;
+    --line:#E4E7EC;
+    --line-2:#EDEFF3;
+    --accent:#1A46C4;
+    --accent-ink:#12308A;
+    --accent-soft:rgba(26,70,196,0.08);
+    --accent-line:rgba(26,70,196,0.22);
+    --maxw:1080px;
+    --pad:clamp(20px,5vw,64px);
+    --display:"Bricolage Grotesque",-apple-system,sans-serif;
+    --body:"Instrument Sans",-apple-system,system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#fff;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,247,249,0.82);
+    backdrop-filter:saturate(1.4) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;}
+  .mark{
+    font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.02em;
+    display:flex;align-items:center;gap:9px;color:var(--ink);
+  }
+  .mark .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+  .topnav{display:flex;gap:22px;font-family:var(--mono);font-size:12.5px;color:var(--muted);}
+  .topnav a{transition:color .18s;}
+  .topnav a:hover{color:var(--accent);}
+  @media(max-width:640px){.topnav{display:none;}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(56px,10vw,120px) 0 clamp(40px,6vw,72px);position:relative;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;
+    color:var(--accent-ink);text-transform:uppercase;margin:0 0 26px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent-line);}
+  h1{
+    font-family:var(--display);font-weight:800;
+    font-size:clamp(44px,8.5vw,92px);
+    line-height:.98;letter-spacing:-.03em;
+    margin:0;color:var(--ink);
+  }
+  .hero-sub{
+    margin:26px 0 0;max-width:36ch;
+    font-size:clamp(18px,2.4vw,22px);line-height:1.42;color:var(--ink-2);font-weight:400;
+  }
+  .hero-sub b{font-weight:600;color:var(--ink);}
+  .hero-meta{
+    margin-top:34px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    font-family:var(--mono);font-size:12.5px;
+  }
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:7px 12px;border:1px solid var(--line);border-radius:999px;
+    background:var(--panel);color:var(--muted);
+  }
+  .chip.solid{background:var(--accent);border-color:var(--accent);color:#fff;transition:background .18s;}
+  .chip.solid:hover{background:var(--accent-ink);}
+  .chip svg{width:13px;height:13px;}
+
+  /* pipeline signature */
+  .pipe{margin-top:52px;width:100%;height:40px;overflow:visible;}
+  .pipe .rail{fill:none;stroke:var(--line);stroke-width:2;}
+  .pipe .node{fill:var(--panel);stroke:var(--accent-line);stroke-width:1.5;}
+  .pipe .flow{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-dasharray:8 220;stroke-dashoffset:0;animation:flow 3.6s linear infinite;}
+  .pipe .packet{fill:var(--accent);animation:packet 3.6s linear infinite;}
+  @keyframes flow{to{stroke-dashoffset:-228;}}
+  @keyframes packet{0%{opacity:0;}6%{opacity:1;}92%{opacity:1;}100%{opacity:0;transform:translateX(0);}}
+
+  /* ---------- section frame ---------- */
+  section[id]{padding:clamp(46px,7vw,84px) 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px;}
+  .sec-idx{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:500;}
+  .sec-title{font-family:var(--display);font-weight:700;font-size:clamp(15px,2vw,17px);letter-spacing:.02em;text-transform:uppercase;color:var(--ink);}
+
+  /* summary */
+  .lede{font-size:clamp(21px,3vw,29px);line-height:1.4;font-weight:400;color:var(--ink-2);max-width:24ch;font-family:var(--display);letter-spacing:-.01em;}
+  .lede{max-width:none;}
+  .summary-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start;}
+  .summary-grid p.body{margin:0;color:var(--muted);font-size:16px;}
+  .summary-grid p.body + p.body{margin-top:16px;}
+  @media(max-width:760px){.summary-grid{grid-template-columns:1fr;gap:24px;}}
+
+  /* impact readouts */
+  .readouts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .ro{background:var(--panel);padding:26px 22px 24px;position:relative;}
+  .ro .tick{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.04em;}
+  .ro .num{font-family:var(--display);font-weight:800;font-size:clamp(40px,6vw,58px);line-height:1;letter-spacing:-.03em;margin:14px 0 8px;color:var(--ink);}
+  .ro .num .u{font-size:.5em;font-weight:700;color:var(--accent);margin-left:1px;}
+  .ro .lab{font-size:13.5px;color:var(--muted);line-height:1.35;}
+  @media(max-width:760px){.readouts{grid-template-columns:repeat(2,1fr);}}
+
+  /* experience */
+  .role{display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(20px,4vw,52px);padding:34px 0;border-top:1px solid var(--line-2);}
+  .role:first-of-type{border-top:none;padding-top:6px;}
+  .role-side .co{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--ink);}
+  .role-side .rl{font-size:14.5px;color:var(--accent-ink);font-weight:600;margin-top:3px;}
+  .role-side .meta{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:12px;line-height:1.7;}
+  .role-side .meta span{display:block;}
+  .role-body{margin:0;padding:0;list-style:none;}
+  .role-body li{position:relative;padding-left:20px;color:var(--ink-2);font-size:15.5px;line-height:1.55;margin-bottom:11px;}
+  .role-body li:last-child{margin-bottom:0;}
+  .role-body li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:1.5px;background:var(--accent);}
+  .role-body strong{color:var(--ink);font-weight:600;}
+  @media(max-width:640px){.role{grid-template-columns:1fr;gap:16px;padding:26px 0;}.role-side .meta{margin-top:8px;}}
+  .role-main{min-width:0;}
+  .paper-link{display:inline-flex;align-items:center;gap:9px;margin-top:20px;font-family:var(--mono);font-size:12.5px;color:var(--accent);border:1px solid var(--accent-line);background:var(--accent-soft);padding:9px 14px;border-radius:9px;transition:background .18s,color .18s,border-color .18s;}
+  .paper-link:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .paper-link svg{width:14px;height:14px;flex-shrink:0;}
+
+  /* projects grid */
+  .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .pcard{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:clamp(24px,3vw,32px);position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+  .pcard::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--accent);opacity:.55;transition:opacity .2s;}
+  .pcard:hover{border-color:var(--accent-line);transform:translateY(-2px);}
+  .pcard:hover::before{opacity:1;}
+  .pctx{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--accent);display:inline-flex;align-items:center;gap:8px;}
+  .pcard h3{font-family:var(--display);font-weight:700;font-size:clamp(19px,2.4vw,23px);letter-spacing:-.01em;margin:14px 0 10px;color:var(--ink);line-height:1.15;}
+  .pcard p{margin:0;color:var(--muted);font-size:15px;line-height:1.55;}
+  .pcard .tags{margin-top:auto;padding-top:20px;display:flex;flex-wrap:wrap;gap:7px;}
+  .pcard .tags span{font-family:var(--mono);font-size:11px;color:var(--ink-2);background:var(--accent-soft);border:1px solid var(--accent-line);padding:5px 9px;border-radius:6px;}
+  .pcard .paper-link{margin-top:16px;align-self:flex-start;}
+  @media(max-width:720px){.projects{grid-template-columns:1fr;}}
+
+  /* stack */
+  .stack{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .stackrow{background:var(--panel);padding:22px 24px;}
+  .stackrow .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:12px;}
+  .stackrow .v{display:flex;flex-wrap:wrap;gap:8px;}
+  .stackrow .v span{font-size:13.5px;color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--paper);}
+  @media(max-width:640px){.stack{grid-template-columns:1fr;}}
+
+  /* education */
+  .edu{margin:0;padding:0;list-style:none;}
+  .edu li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:clamp(16px,4vw,40px);padding:22px 0;border-top:1px solid var(--line-2);}
+  .edu li:first-child{border-top:none;padding-top:4px;}
+  .edu .yr{font-family:var(--mono);font-size:12.5px;color:var(--faint);padding-top:3px;}
+  .edu .deg{font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);letter-spacing:-.01em;}
+  .edu .inst{font-size:14.5px;color:var(--accent-ink);font-weight:600;margin-top:2px;}
+  .edu .desc{font-size:14px;color:var(--muted);margin-top:5px;}
+  @media(max-width:560px){.edu li{grid-template-columns:1fr;gap:4px;}}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:clamp(48px,7vw,80px) 0 60px;}
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:flex-end;}
+  .foot-cta .k{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-bottom:14px;}
+  .foot-cta h2{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin:0;color:var(--ink);line-height:1;}
+  .foot-cta h2 a{border-bottom:2px solid var(--accent-line);transition:border-color .18s;}
+  .foot-cta h2 a:hover{border-color:var(--accent);}
+  .foot-links{font-family:var(--mono);font-size:13px;color:var(--muted);text-align:right;line-height:2;}
+  .foot-links a:hover{color:var(--accent);}
+  .foot-links .lang{color:var(--faint);font-size:12px;margin-top:14px;line-height:1.6;}
+  @media(max-width:640px){.foot-links{text-align:left;}}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+    .reveal{opacity:1;transform:none;}
+    .pipe .packet{opacity:1;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="mark"><span class="dot"></span>Francisco Carneiro</span>
+    <nav class="topnav">
+      <a href="#summary">Summary</a>
+      <a href="#impact">Impact</a>
+      <a href="#experience">Experience</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow reveal">Senior Data Engineer · Lisbon</p>
+      <h1 class="reveal">Francisco<br>Carneiro</h1>
+      <p class="hero-sub reveal">I build and own the <b>cloud data platforms</b> businesses decide on — and the infrastructure that makes <b>AI reliable in production</b>. Architecture to production, with measurable cost and reliability gains.</p>
+      <div class="hero-meta reveal">
+        <a class="chip solid" href="mailto:francisco.vidal.carneiro@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Get in touch
+        </a>
+        <a class="chip" href="https://www.linkedin.com/in/f-carneiro/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H21.4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.8H10z"/></svg>
+          LinkedIn
+        </a>
+        <span class="chip">GCP · BigQuery · Python</span>
+        <span class="chip">AI infrastructure · Automation</span>
+      </div>
+
+      <svg class="pipe reveal" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+        <path class="rail" d="M0 20 H1000"/>
+        <path class="flow" d="M0 20 H1000"/>
+        <circle class="node" cx="0" cy="20" r="5"/>
+        <circle class="node" cx="333" cy="20" r="5"/>
+        <circle class="node" cx="666" cy="20" r="5"/>
+        <circle class="node" cx="1000" cy="20" r="5"/>
+        <circle class="packet" cy="20" r="3.5"><animateMotion dur="3.6s" repeatCount="indefinite" path="M0 20 H1000"/></circle>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="summary">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">01</span><span class="sec-title">Summary</span></div>
+      <div class="summary-grid">
+        <p class="lede reveal">Five-plus years turning business problems into reliable, production-grade data systems — across industry, utilities, and fintech.</p>
+        <div class="reveal">
+          <p class="body">I own data platforms end to end: architecture, ingestion, orchestration, CI/CD, and cost. My work sits where engineering rigour meets business impact — I partner closely with product, analysts, and stakeholders to ship data products people actually depend on.</p>
+          <p class="body">Grounded in aerospace-engineering rigour, with shipped machine-learning foundations. The active focus: the data and infrastructure layer beneath <strong style="color:var(--ink);font-weight:600">LLM and agentic systems</strong> — retrieval pipelines, orchestration, and the observability that carries them from prototype to production.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section id="impact">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">02</span><span class="sec-title">Impact at a glance</span></div>
+      <div class="readouts reveal">
+        <div class="ro">
+          <div class="tick">/ FINOPS</div>
+          <div class="num" data-count="30" data-suffix="%">30<span class="u">%</span></div>
+          <div class="lab">Platform cost reduced through warehouse &amp; workload optimization</div>
+        </div>
+        <div class="ro">
+          <div class="tick">/ SCALE</div>
+          <div class="num" data-count="20" data-suffix="+">20<span class="u">+</span></div>
+          <div class="lab">Cloud data platforms deployed across business units</div>
+        </div>
+        <div class="ro">
+          <div class="tick">/ LEADERSHIP</div>
+          <div class="num" data-count="4">4</div>
+          <div class="lab">Data engineers led as technical lead</div>
+        </div>
+        <div class="ro">
+          <div class="tick">/ TENURE</div>
+          <div class="num" data-count="5" data-suffix="+">5<span class="u">+</span></div>
+          <div class="lab">Years across data-driven industries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">03</span><span class="sec-title">Experience</span></div>
+
+      <article class="role reveal">
+        <div class="role-side">
+          <div class="co">Agicap</div>
+          <div class="rl">Senior Data Engineer</div>
+          <div class="meta"><span>Paris / Lisbon</span><span>2023 — Present</span></div>
+        </div>
+        <ul class="role-body">
+          <li>Own <strong>business-critical data systems end to end</strong> — from scoping and architecture to implementation and production support — across batch and near-real-time workflows.</li>
+          <li>Led platform initiatives spanning CDC, orchestration, ingestion, CI/CD, and infrastructure security, lifting scalability, reliability, and maintainability.</li>
+          <li>Cut <strong>platform costs by 30%</strong> through data-warehouse optimization, asset cleanup, workload tuning, and cost observability.</li>
+          <li>Partner with analysts, product, and business to ship robust data products, marts, alerts, and integrations for operational and decision-making use cases.</li>
+        </ul>
+      </article>
+
+      <article class="role reveal">
+        <div class="role-side">
+          <div class="co">Veolia</div>
+          <div class="rl">Lead Data Engineer</div>
+          <div class="meta"><span>Paris</span><span>2021 — 2023</span></div>
+        </div>
+        <ul class="role-body">
+          <li>Spearheaded a <strong>Data-Platform-as-a-Service</strong> initiative, deploying 20+ cloud data platforms across Veolia's business units.</li>
+          <li>Designed and maintained platform infrastructure and CI/CD pipelines for scalable, repeatable deployments.</li>
+          <li>Built transversal capabilities — alerting, connectors, usage dashboards — that raised reliability and adoption.</li>
+          <li>Managed a <strong>team of 4 engineers</strong> and advised stakeholders on architecture, workflow design, and data modeling.</li>
+        </ul>
+      </article>
+
+      <article class="role reveal">
+        <div class="role-side">
+          <div class="co">AKKA Technologies</div>
+          <div class="rl">Data Architect</div>
+          <div class="meta"><span>Toulouse</span><span>2020 — 2021</span></div>
+        </div>
+        <ul class="role-body">
+          <li>Designed an <strong>Industry 4.0 big-data platform</strong> for industrial IoT, with batch and streaming in a lambda architecture (load-tested at ~1 MB/s).</li>
+          <li>Implemented real-time anomaly detection using supervised and unsupervised machine-learning methods.</li>
+          <li>Delivered a horizontally scalable system serving real operational use cases — alerting, real-time and batch analytics.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">04</span><span class="sec-title">Selected projects</span></div>
+      <div class="projects">
+
+        <article class="pcard reveal">
+          <span class="pctx">Independent &nbsp;·&nbsp; Shopify → Pipedrive</span>
+          <h3>Awake — sales automation integration</h3>
+          <p>Designed and deployed automation connecting Awake's Shopify storefront to their Pipedrive CRM — syncing orders and line items straight into the sales pipeline. Killed the manual data entry and kept commercial data in lockstep, so the sales team works from a single source of truth.</p>
+          <div class="tags"><span>Shopify API</span><span>Pipedrive</span><span>Webhooks</span><span>OAuth</span><span>Automation</span></div>
+        </article>
+
+        <article class="pcard reveal">
+          <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
+          <h3>Change-data-capture ingestion</h3>
+          <p>Deployed CDC streams from PostgreSQL to Google Cloud Storage using Airbyte, unlocking near-real-time data flows for business-critical systems.</p>
+          <div class="tags"><span>Airbyte</span><span>PostgreSQL</span><span>CDC</span><span>GCS</span><span>Streaming</span></div>
+        </article>
+
+        <article class="pcard reveal">
+          <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
+          <h3>Platform FinOps &amp; cost optimization</h3>
+          <p>Led a sustained cost-reduction effort across the data platform — optimizing dbt models, tuning orchestration workflows, and fine-tuning cluster scaling — cutting platform spend by 30%. Separately halved a streaming reporting instance through targeted optimization, cutting its running cost by roughly half.</p>
+          <div class="tags"><span>dbt</span><span>BigQuery</span><span>Airflow</span><span>Cluster tuning</span><span>Cost</span></div>
+        </article>
+
+        <article class="pcard reveal">
+          <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
+          <h3>Churn Me &amp; Downsell Me</h3>
+          <p>Managed Admin APIs that automate company- and client-management processes, and exposed them to HubSpot — so business teams trigger and run these operations directly from their CRM.</p>
+          <div class="tags"><span>Admin API</span><span>HubSpot</span><span>Python</span><span>Automation</span></div>
+        </article>
+
+        <article class="pcard reveal">
+          <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
+          <h3>Airbyte migration to Kubernetes</h3>
+          <p>Migrated Airbyte from a single-VM deployment to a Kubernetes cluster — moving batch data collection onto scalable, container-orchestrated infrastructure.</p>
+          <div class="tags"><span>Airbyte</span><span>Kubernetes</span><span>GKE</span><span>Docker</span><span>Infrastructure</span></div>
+        </article>
+
+        <article class="pcard reveal">
+          <span class="pctx">@ Agicap &nbsp;·&nbsp; Ongoing</span>
+          <h3>AI enablement for analytics</h3>
+          <p>Building an AI context layer over the analytics platform — Looker MCP for natural-language exploration, with structured context across data-engineering repos — so LLM tooling works reliably against real company data.</p>
+          <div class="tags"><span>Looker MCP</span><span>LLM context</span><span>dbt</span><span>Analytics</span></div>
+        </article>
+
+        <article class="pcard reveal">
+          <span class="pctx">@ Veolia &nbsp;·&nbsp; Enterprise</span>
+          <h3>Data Platform-as-a-Service</h3>
+          <p>Productised a reusable cloud data platform and deployed 20+ instances across Veolia's business units — with shared alerting, connectors, and usage dashboards baked in. One model, many teams, repeatable delivery. Led a team of four to ship it.</p>
+          <div class="tags"><span>Terraform</span><span>GKE</span><span>CI/CD</span><span>Airflow</span><span>Looker</span></div>
+        </article>
+
+        <article class="pcard reveal">
+          <span class="pctx">@ AKKA &nbsp;·&nbsp; Industrial IoT</span>
+          <h3>Real-time anomaly detection at scale</h3>
+          <p>Architected an Industry 4.0 big-data platform for industrial IoT — batch and streaming in a lambda design, load-tested at ~1 MB/s — with supervised machine-learning models detecting anomalies live against real operational use cases.</p>
+          <div class="tags"><span>Kafka</span><span>Spark</span><span>scikit-learn</span><span>Spark ML</span><span>Cassandra</span></div>
+          <a class="paper-link" href="https://fenix.tecnico.ulisboa.pt/downloadFile/1689244997262515/Resumo_Alargado_Francisco_Vidal_Cabrita_Carneiro_JNOS.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+            Read the paper · IST / JNOS
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">05</span><span class="sec-title">Core technologies</span></div>
+      <div class="stack reveal">
+        <div class="stackrow">
+          <div class="k">Languages &amp; query</div>
+          <div class="v"><span>Python</span><span>SQL</span></div>
+        </div>
+        <div class="stackrow">
+          <div class="k">Cloud &amp; warehouse</div>
+          <div class="v"><span>GCP</span><span>Cloud Run</span><span>Pub/Sub</span><span>BigQuery</span><span>Kubernetes</span><span>Terraform</span></div>
+        </div>
+        <div class="stackrow">
+          <div class="k">Pipelines &amp; orchestration</div>
+          <div class="v"><span>dbt</span><span>Airflow</span><span>Composer</span><span>Airbyte</span><span>Kafka</span><span>Spark</span><span>GitLab CI/CD</span></div>
+        </div>
+        <div class="stackrow">
+          <div class="k">Stores, ML &amp; BI</div>
+          <div class="v"><span>PostgreSQL</span><span>Cassandra</span><span>scikit-learn</span><span>Spark ML</span><span>Looker</span></div>
+        </div>
+        <div class="stackrow">
+          <div class="k">Automation &amp; integration</div>
+          <div class="v"><span>Docker</span><span>n8n</span><span>Zapier</span><span>REST APIs</span></div>
+        </div>
+        <div class="stackrow">
+          <div class="k">Languages spoken</div>
+          <div class="v"><span>Portuguese — native</span><span>English — fluent</span><span>French — fluent</span><span>Spanish — basic</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">06</span><span class="sec-title">Education</span></div>
+      <ul class="edu reveal">
+        <li>
+          <div class="yr">2018 — 2020</div>
+          <div>
+            <div class="deg">MSc Engineering — Double Degree</div>
+            <div class="inst">ISAE-SUPAERO / Instituto Superior Técnico</div>
+            <div class="desc">Specialization in computer science and autonomous systems.</div>
+          </div>
+        </li>
+        <li>
+          <div class="yr">2019 — 2020</div>
+          <div>
+            <div class="deg">Certificate — Data Science, ML &amp; Big Data</div>
+            <div class="inst">University of Toulouse</div>
+            <div class="desc">100-hour program covering machine learning and big-data infrastructure.</div>
+          </div>
+        </li>
+        <li>
+          <div class="yr">2015 — 2018</div>
+          <div>
+            <div class="deg">BSc Aerospace Engineering</div>
+            <div class="inst">Instituto Superior Técnico</div>
+            <div class="desc">Recipient of academic achievement awards, 2016 &amp; 2018.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-cta reveal">
+        <div class="k">Let's talk data</div>
+        <h2><a href="mailto:francisco.vidal.carneiro@gmail.com">francisco.vidal.carneiro<br>@gmail.com</a></h2>
+      </div>
+      <div class="foot-links reveal">
+        <div><a href="https://www.linkedin.com/in/f-carneiro/" target="_blank" rel="noopener">linkedin.com/in/f-carneiro</a></div>
+        <div><a href="tel:+351911508269">+351 911 508 269</a></div>
+        <div>Lisbon, Portugal</div>
+        <div class="lang">Portuguese · English · French · Spanish</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if(reduce || !('IntersectionObserver' in window)){
+      els.forEach(function(e){e.classList.add('in');});
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){io.observe(e);});
+  })();
+
+  // metric count-up
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var nums = document.querySelectorAll('.num[data-count]');
+    function run(el){
+      var target = parseInt(el.getAttribute('data-count'),10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      if(reduce){ return; }
+      el.innerHTML = '0' + (suffix?'<span class="u">'+suffix+'</span>':'');
+      var start = null, dur = 1100;
+      function step(t){
+        if(!start) start = t;
+        var p = Math.min((t-start)/dur,1);
+        var eased = 1-Math.pow(1-p,3);
+        var val = Math.round(eased*target);
+        el.innerHTML = val + (suffix?'<span class="u">'+suffix+'</span>':'');
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if(!('IntersectionObserver' in window)){ nums.forEach(run); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ run(en.target); io.unobserve(en.target); } });
+    },{threshold:.5});
+    nums.forEach(function(n){io.observe(n);});
+  })();
+</script>
+</body>
+</html>
