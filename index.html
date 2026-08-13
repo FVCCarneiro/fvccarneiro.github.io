@@ -110,7 +110,6 @@
   }
   .chip.solid{background:var(--accent);border-color:var(--accent);color:#fff;transition:background .18s;}
   .chip.solid:hover{background:var(--accent-ink);}
-  .chip svg{width:13px;height:13px;}
 
   /* pipeline signature */
   .pipe{margin-top:52px;width:100%;height:40px;overflow:visible;}
@@ -122,6 +121,7 @@
   @keyframes packet{0%{opacity:0;}6%{opacity:1;}92%{opacity:1;}100%{opacity:0;transform:translateX(0);}}
 
   /* ---------- section frame ---------- */
+  section[id], footer#contact{scroll-margin-top:76px;}
   section[id]{padding:clamp(46px,7vw,84px) 0;border-top:1px solid var(--line);}
   .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px;}
   .sec-idx{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:500;}
@@ -175,6 +175,12 @@
   .pcard .tags span{font-family:var(--mono);font-size:11px;color:var(--ink-2);background:var(--accent-soft);border:1px solid var(--accent-line);padding:5px 9px;border-radius:6px;}
   .pcard .paper-link{margin-top:16px;align-self:flex-start;}
   @media(max-width:720px){.projects{grid-template-columns:1fr;}}
+  .pcard.more-project{display:none;}
+  .projects.expanded .pcard.more-project{display:flex;}
+  .show-more{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-family:var(--mono);font-size:12.5px;color:var(--accent);background:none;border:1px solid var(--accent-line);padding:10px 16px;border-radius:9px;cursor:pointer;transition:background .18s,color .18s,border-color .18s;}
+  .show-more:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .show-more svg{width:13px;height:13px;flex-shrink:0;transition:transform .2s;}
+  .show-more[aria-expanded="true"] svg{transform:rotate(180deg);}
 
   /* stack */
   .stack{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
@@ -271,10 +277,10 @@
   <div class="wrap">
     <span class="mark"><span class="dot"></span>Francisco Carneiro</span>
     <nav class="topnav">
-      <a href="#summary">Summary</a>
-      <a href="#impact">Impact</a>
       <a href="#experience">Experience</a>
-      <a href="#stack">Stack</a>
+      <a href="#projects">Projects</a>
+      <a href="#recommendations">Recommendations</a>
+      <a href="#writing">Writing</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -288,18 +294,9 @@
       <h1 class="reveal">Francisco<br>Carneiro</h1>
       <p class="hero-sub reveal">I start with the business problem, not the technology stack. I build the <b>cloud data platforms</b> companies run on, and I'm now extending that same foundation into the <b>agentic systems</b> running on top of it, across the wider company ecosystem.</p>
       <div class="hero-meta reveal">
-        <a class="chip solid" href="mailto:francisco.vidal.carneiro@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          Get in touch
-        </a>
-        <a class="chip" href="https://www.linkedin.com/in/f-carneiro/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H21.4v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.8H10z"/></svg>
-          LinkedIn
-        </a>
-        <a class="chip" href="https://github.com/FVCCarneiro" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
-          GitHub
-        </a>
+        <a class="chip solid" href="mailto:francisco.vidal.carneiro@gmail.com">Get in touch</a>
+        <a class="chip" href="https://www.linkedin.com/in/f-carneiro/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="chip" href="https://github.com/FVCCarneiro" target="_blank" rel="noopener">GitHub</a>
         <span class="chip">GCP · BigQuery · Python</span>
         <span class="chip">AI infrastructure · Automation</span>
       </div>
@@ -410,7 +407,7 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">04</span><span class="sec-title">Selected projects</span></div>
+      <div class="sec-head reveal"><span class="sec-idx">04</span><span class="sec-title">Projects</span></div>
       <div class="projects">
 
         <article class="pcard reveal">
@@ -420,7 +417,7 @@
           <div class="tags"><span>Shopify API</span><span>Pipedrive</span><span>Webhooks</span><span>OAuth</span><span>Automation</span></div>
         </article>
 
-        <article class="pcard reveal">
+        <article class="pcard reveal more-project">
           <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
           <h3>Change-data-capture ingestion</h3>
           <p>Deployed CDC streams from PostgreSQL to Google Cloud Storage using Airbyte, unlocking near-real-time data flows for business-critical systems.</p>
@@ -434,14 +431,14 @@
           <div class="tags"><span>dbt</span><span>BigQuery</span><span>Airflow</span><span>Cluster tuning</span><span>Cost</span></div>
         </article>
 
-        <article class="pcard reveal">
+        <article class="pcard reveal more-project">
           <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
           <h3>Churn Me &amp; Downsell Me</h3>
           <p>Managed Admin APIs that automate company- and client-management processes, and exposed them to HubSpot — so business teams trigger and run these operations directly from their CRM.</p>
           <div class="tags"><span>Admin API</span><span>HubSpot</span><span>Python</span><span>Automation</span></div>
         </article>
 
-        <article class="pcard reveal">
+        <article class="pcard reveal more-project">
           <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
           <h3>Airbyte migration to Kubernetes</h3>
           <p>Migrated Airbyte from a single-VM deployment to a Kubernetes cluster — moving batch data collection onto scalable, container-orchestrated infrastructure.</p>
@@ -462,7 +459,7 @@
           <div class="tags"><span>Terraform</span><span>GKE</span><span>CI/CD</span><span>Airflow</span><span>Looker</span></div>
         </article>
 
-        <article class="pcard reveal">
+        <article class="pcard reveal more-project">
           <span class="pctx">@ AKKA &nbsp;·&nbsp; Industrial IoT</span>
           <h3>Real-time anomaly detection at scale</h3>
           <p>Architected an Industry 4.0 big-data platform for industrial IoT — batch and streaming in a lambda design, load-tested at ~1 MB/s — with supervised machine-learning models detecting anomalies live against real operational use cases.</p>
@@ -474,6 +471,11 @@
         </article>
 
       </div>
+
+      <button type="button" class="show-more reveal" id="projToggle" aria-expanded="false">
+        <span>Show 4 more projects</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
     </div>
   </section>
 
@@ -657,6 +659,21 @@
       entries.forEach(function(en){ if(en.isIntersecting){ run(en.target); io.unobserve(en.target); } });
     },{threshold:.5});
     nums.forEach(function(n){io.observe(n);});
+  })();
+
+  // projects show more
+  (function(){
+    var btn = document.getElementById('projToggle');
+    var grid = document.querySelector('.projects');
+    if(!btn || !grid) return;
+    btn.addEventListener('click', function(){
+      var expanded = grid.classList.toggle('expanded');
+      btn.setAttribute('aria-expanded', expanded);
+      btn.querySelector('span').textContent = expanded ? 'Show fewer projects' : 'Show 4 more projects';
+      if(expanded){
+        grid.querySelectorAll('.more-project').forEach(function(el){ el.classList.add('in'); });
+      }
+    });
   })();
 </script>
 </body>
