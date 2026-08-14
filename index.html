@@ -110,6 +110,7 @@
   }
   .chip.solid{background:var(--accent);border-color:var(--accent);color:#fff;transition:background .18s;}
   .chip.solid:hover{background:var(--accent-ink);}
+  .chip svg{width:12px;height:12px;flex-shrink:0;}
 
   /* pipeline signature */
   .pipe{margin-top:52px;width:100%;height:40px;overflow:visible;}
@@ -203,12 +204,21 @@
   .posts{margin:0;padding:0;list-style:none;}
   .posts li{border-top:1px solid var(--line-2);}
   .posts li:first-child{border-top:none;}
-  .posts a{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;padding:19px 0;transition:opacity .18s;}
-  .posts a:hover{opacity:.68;}
-  .posts .ptitle{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);letter-spacing:-.01em;flex:1 1 240px;}
-  .posts .pdesc{font-size:13.5px;color:var(--muted);flex:2 1 300px;}
-  .posts .pmeta{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap;}
-  @media(max-width:640px){.posts a{flex-direction:column;gap:5px;padding:18px 0;}}
+  .posts a{display:flex;align-items:center;gap:22px;padding:20px 0;transition:opacity .18s;}
+  .posts a:hover{opacity:.7;}
+  .posts .pthumb{width:120px;height:84px;border-radius:12px;flex-shrink:0;border:1px solid var(--line);}
+  .posts .pthumb-bg{fill:var(--accent-soft);}
+  .posts .pthumb-num{font-family:var(--display);font-weight:800;font-size:54px;fill:var(--accent-line);}
+  .posts .pthumb-rail{stroke:var(--accent-line);stroke-width:2;}
+  .posts .pthumb-node{fill:var(--accent);}
+  .posts .pbody{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px;}
+  .posts .ptitle{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);letter-spacing:-.01em;}
+  .posts .pdesc{font-size:13.5px;color:var(--muted);line-height:1.45;}
+  .posts .pmeta{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:2px;}
+  @media(max-width:560px){
+    .posts a{flex-direction:column;align-items:flex-start;gap:14px;padding:18px 0;}
+    .posts .pthumb{width:100%;height:150px;}
+  }
 
   /* education */
   .edu{margin:0;padding:0;list-style:none;}
@@ -294,9 +304,18 @@
       <h1 class="reveal">Francisco<br>Carneiro</h1>
       <p class="hero-sub reveal">I start with the business problem, not the technology stack. I build the <b>cloud data platforms</b> companies run on, and I'm now extending that same foundation into the <b>agentic systems</b> running on top of it, across the wider company ecosystem.</p>
       <div class="hero-meta reveal">
-        <a class="chip solid" href="mailto:francisco.vidal.carneiro@gmail.com">Get in touch</a>
-        <a class="chip" href="https://www.linkedin.com/in/f-carneiro/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="chip" href="https://github.com/FVCCarneiro" target="_blank" rel="noopener">GitHub</a>
+        <a class="chip solid" href="mailto:francisco.vidal.carneiro@gmail.com">
+          <svg viewBox="0 0 512 512" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+          Get in touch
+        </a>
+        <a class="chip" href="https://www.linkedin.com/in/f-carneiro/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 448 512" fill="currentColor"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+          LinkedIn
+        </a>
+        <a class="chip" href="https://github.com/FVCCarneiro" target="_blank" rel="noopener">
+          <svg viewBox="0 0 496 512" fill="currentColor"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+          GitHub
+        </a>
         <span class="chip">GCP · BigQuery · Python</span>
         <span class="chip">AI infrastructure · Automation</span>
       </div>
@@ -507,23 +526,50 @@
       <ul class="posts">
         <li class="reveal">
           <a href="https://medium.com/@f.carneiro/common-pitfalls-of-data-teams-2cd19a3fd524" target="_blank" rel="noopener">
-            <span class="ptitle">Common Pitfalls of Data Teams</span>
-            <span class="pdesc">Five mistakes emerging data teams make, from team composition to governance and quality assurance.</span>
-            <span class="pmeta">Medium &middot; Dec 2024</span>
+            <svg class="pthumb" viewBox="0 0 200 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="200" height="140" class="pthumb-bg"/>
+              <text x="16" y="112" class="pthumb-num">01</text>
+              <line x1="140" y1="28" x2="176" y2="28" class="pthumb-rail"/>
+              <circle cx="140" cy="28" r="4" class="pthumb-node"/>
+              <circle cx="176" cy="28" r="4" class="pthumb-node"/>
+            </svg>
+            <div class="pbody">
+              <span class="ptitle">Common Pitfalls of Data Teams</span>
+              <span class="pdesc">Five mistakes emerging data teams make, from team composition to governance and quality assurance.</span>
+              <span class="pmeta">Medium &middot; Dec 2024</span>
+            </div>
           </a>
         </li>
         <li class="reveal">
           <a href="https://medium.com/@f.carneiro/what-is-data-engineering-systems-tools-and-technolgies-4773ba3fa8fb" target="_blank" rel="noopener">
-            <span class="ptitle">What is Data Engineering: Systems, Tools and Technologies?</span>
-            <span class="pdesc">The core systems behind data lakes, warehouses, pipelines, and orchestration.</span>
-            <span class="pmeta">Medium &middot; Nov 2024</span>
+            <svg class="pthumb" viewBox="0 0 200 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="200" height="140" class="pthumb-bg"/>
+              <text x="16" y="112" class="pthumb-num">02</text>
+              <line x1="168" y1="20" x2="168" y2="56" class="pthumb-rail"/>
+              <circle cx="168" cy="20" r="4" class="pthumb-node"/>
+              <circle cx="168" cy="56" r="4" class="pthumb-node"/>
+            </svg>
+            <div class="pbody">
+              <span class="ptitle">What is Data Engineering: Systems, Tools and Technologies?</span>
+              <span class="pdesc">The core systems behind data lakes, warehouses, pipelines, and orchestration.</span>
+              <span class="pmeta">Medium &middot; Nov 2024</span>
+            </div>
           </a>
         </li>
         <li class="reveal">
           <a href="https://medium.com/@f.carneiro/what-is-data-engineering-611cd94bc5ef" target="_blank" rel="noopener">
-            <span class="ptitle">What is Data Engineering?</span>
-            <span class="pdesc">What data engineers actually build, and why it matters for turning raw data into business value.</span>
-            <span class="pmeta">Medium &middot; Aug 2024</span>
+            <svg class="pthumb" viewBox="0 0 200 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="200" height="140" class="pthumb-bg"/>
+              <text x="16" y="112" class="pthumb-num">03</text>
+              <line x1="132" y1="24" x2="168" y2="48" class="pthumb-rail"/>
+              <circle cx="132" cy="24" r="4" class="pthumb-node"/>
+              <circle cx="168" cy="48" r="4" class="pthumb-node"/>
+            </svg>
+            <div class="pbody">
+              <span class="ptitle">What is Data Engineering?</span>
+              <span class="pdesc">What data engineers actually build, and why it matters for turning raw data into business value.</span>
+              <span class="pmeta">Medium &middot; Aug 2024</span>
+            </div>
           </a>
         </li>
       </ul>
