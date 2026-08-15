@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
   :root{
     --paper:#F6F7F9;
@@ -30,7 +31,7 @@
     --ink:#14161B;
     --ink-2:#2B303A;
     --muted:#59616E;
-    --faint:#8B93A1;
+    --faint:#666E7B;
     --line:#E4E7EC;
     --line-2:#EDEFF3;
     --accent:#1A46C4;
@@ -126,7 +127,7 @@
   section[id]{padding:clamp(46px,7vw,84px) 0;border-top:1px solid var(--line);}
   .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px;}
   .sec-idx{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:500;}
-  .sec-title{font-family:var(--display);font-weight:700;font-size:clamp(15px,2vw,17px);letter-spacing:.02em;text-transform:uppercase;color:var(--ink);}
+  .sec-title{font-family:var(--display);font-weight:700;font-size:clamp(15px,2vw,17px);letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin:0;}
 
   /* summary */
   .lede{font-size:clamp(21px,3vw,29px);line-height:1.4;font-weight:400;color:var(--ink-2);max-width:24ch;font-family:var(--display);letter-spacing:-.01em;}
@@ -148,7 +149,7 @@
   /* experience */
   .role{display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(20px,4vw,52px);padding:34px 0;border-top:1px solid var(--line-2);}
   .role:first-of-type{border-top:none;padding-top:6px;}
-  .role-side .co{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--ink);}
+  .role-side .co{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em;color:var(--ink);margin:0;}
   .role-side .rl{font-size:14.5px;color:var(--accent-ink);font-weight:600;margin-top:3px;}
   .role-side .meta{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:12px;line-height:1.7;}
   .role-side .meta span{display:block;}
@@ -236,8 +237,8 @@
   .foot-cta{display:flex;align-items:center;gap:24px;}
   .foot-photo{width:88px;height:88px;border-radius:14px;object-fit:cover;border:1px solid var(--line);flex-shrink:0;}
   .foot-cta .k{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-bottom:14px;}
-  .foot-cta h2{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin:0;color:var(--ink);line-height:1;}
-  .foot-cta h2 a{border-bottom:2px solid var(--accent-line);transition:border-color .18s;}
+  .foot-cta h2{font-family:var(--display);font-weight:800;font-size:clamp(24px,5vw,46px);letter-spacing:-.02em;margin:0;color:var(--ink);line-height:1;}
+  .foot-cta h2 a{border-bottom:2px solid var(--accent-line);transition:border-color .18s;overflow-wrap:anywhere;}
   .foot-cta h2 a:hover{border-color:var(--accent);}
   @media(max-width:640px){.foot-cta{flex-direction:column;align-items:flex-start;gap:16px;}}
   .foot-links{font-family:var(--mono);font-size:13px;color:var(--muted);text-align:right;line-height:2;}
@@ -245,14 +246,34 @@
   .foot-links .lang{color:var(--faint);font-size:12px;margin-top:14px;line-height:1.6;}
   @media(max-width:640px){.foot-links{text-align:left;}}
 
-  /* reveal */
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
-  .reveal.in{opacity:1;transform:none;}
+  /* reveal — fails open: content is visible by default, and only hidden once the
+     inline .js marker confirms a script ran that is able to reveal it again */
+  .reveal{opacity:1;transform:none;}
+  .js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+  .js .reveal.in{opacity:1;transform:none;}
 
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
-    .reveal{opacity:1;transform:none;}
-    .pipe .packet{opacity:1;}
+    .js .reveal{opacity:1;transform:none;}
+    /* the packet is SMIL, not CSS — animation:none cannot stop it, so hide it */
+    .pipe .packet{display:none;}
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    .reveal{opacity:1!important;transform:none!important;}
+    .pcard.more-project{display:flex!important;}
+    .topbar{position:static;background:none;backdrop-filter:none;border-bottom:1px solid #ccc;}
+    .show-more,.pipe{display:none;}
+    body{background:#fff;color:#000;font-size:11pt;}
+    .wrap{max-width:none;padding-left:0;padding-right:0;}
+    section[id]{padding:18px 0;}
+    .hero{padding:12px 0 18px;}
+    a[href^="http"]::after{content:" (" attr(href) ")";font-family:var(--mono);font-size:9pt;color:#555;word-break:break-all;font-weight:400;}
+    .topnav a::after,.chip::after{content:none;}
+    .pcard,.role,.testi li,.edu li,.posts li{break-inside:avoid;}
+    .sec-head{break-after:avoid;}
+    h1,.sec-title,.pcard h3{break-after:avoid;}
   }
 </style>
 <script type="application/ld+json">
@@ -327,7 +348,7 @@
         <circle class="node" cx="333" cy="20" r="5"/>
         <circle class="node" cx="666" cy="20" r="5"/>
         <circle class="node" cx="1000" cy="20" r="5"/>
-        <circle class="packet" cy="20" r="3.5"><animateMotion dur="3.6s" repeatCount="indefinite" path="M0 20 H1000"/></circle>
+        <circle class="packet" cy="0" r="3.5"><animateMotion dur="3.6s" repeatCount="indefinite" path="M0 20 H1000"/></circle>
       </svg>
     </div>
   </section>
@@ -335,7 +356,7 @@
   <!-- SUMMARY -->
   <section id="summary">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">01</span><span class="sec-title">Summary</span></div>
+      <div class="sec-head reveal"><span class="sec-idx" aria-hidden="true">01</span><h2 class="sec-title">Summary</h2></div>
       <div class="summary-grid">
         <p class="lede reveal">Five-plus years turning business problems into reliable, production-grade data systems — across industry, utilities, and fintech.</p>
         <div class="reveal">
@@ -349,7 +370,7 @@
   <!-- IMPACT -->
   <section id="impact">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">02</span><span class="sec-title">Impact at a glance</span></div>
+      <div class="sec-head reveal"><span class="sec-idx" aria-hidden="true">02</span><h2 class="sec-title">Impact at a glance</h2></div>
       <div class="readouts reveal">
         <div class="ro">
           <div class="tick">/ FINOPS</div>
@@ -378,11 +399,11 @@
   <!-- EXPERIENCE -->
   <section id="experience">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">03</span><span class="sec-title">Experience</span></div>
+      <div class="sec-head reveal"><span class="sec-idx" aria-hidden="true">03</span><h2 class="sec-title">Experience</h2></div>
 
       <article class="role reveal">
         <div class="role-side">
-          <div class="co">Agicap</div>
+          <h3 class="co">Agicap</h3>
           <div class="rl">Senior Data Engineer</div>
           <div class="meta"><span>Paris / Lisbon</span><span>2023 — Present</span></div>
         </div>
@@ -396,7 +417,7 @@
 
       <article class="role reveal">
         <div class="role-side">
-          <div class="co">Veolia</div>
+          <h3 class="co">Veolia</h3>
           <div class="rl">Lead Data Engineer</div>
           <div class="meta"><span>Paris</span><span>2021 — 2023</span></div>
         </div>
@@ -410,7 +431,7 @@
 
       <article class="role reveal">
         <div class="role-side">
-          <div class="co">AKKA Technologies</div>
+          <h3 class="co">AKKA Technologies</h3>
           <div class="rl">Data Architect</div>
           <div class="meta"><span>Toulouse</span><span>2020 — 2021</span></div>
         </div>
@@ -426,7 +447,7 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">04</span><span class="sec-title">Projects</span></div>
+      <div class="sec-head reveal"><span class="sec-idx" aria-hidden="true">04</span><h2 class="sec-title">Projects</h2></div>
       <div class="projects">
 
         <article class="pcard reveal">
@@ -501,7 +522,7 @@
   <!-- RECOMMENDATIONS -->
   <section id="recommendations">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">05</span><span class="sec-title">Recommendations</span></div>
+      <div class="sec-head reveal"><span class="sec-idx" aria-hidden="true">05</span><h2 class="sec-title">Recommendations</h2></div>
       <ul class="testi">
         <li class="reveal">
           <blockquote>Francisco quickly became a pillar of the team thanks to his adaptability and excellent communication. Beyond his technical skills, he stood out for his energy, initiative, and proactivity.</blockquote>
@@ -522,7 +543,7 @@
   <!-- WRITING -->
   <section id="writing">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">06</span><span class="sec-title">Writing</span></div>
+      <div class="sec-head reveal"><span class="sec-idx" aria-hidden="true">06</span><h2 class="sec-title">Writing</h2></div>
       <ul class="posts">
         <li class="reveal">
           <a href="https://medium.com/@f.carneiro/common-pitfalls-of-data-teams-2cd19a3fd524" target="_blank" rel="noopener">
@@ -579,7 +600,7 @@
   <!-- STACK -->
   <section id="stack">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">07</span><span class="sec-title">Core technologies</span></div>
+      <div class="sec-head reveal"><span class="sec-idx" aria-hidden="true">07</span><h2 class="sec-title">Core technologies</h2></div>
       <div class="stack reveal">
         <div class="stackrow">
           <div class="k">Languages &amp; query</div>
@@ -612,7 +633,7 @@
   <!-- EDUCATION -->
   <section id="education">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">08</span><span class="sec-title">Education</span></div>
+      <div class="sec-head reveal"><span class="sec-idx" aria-hidden="true">08</span><h2 class="sec-title">Education</h2></div>
       <ul class="edu reveal">
         <li>
           <div class="yr">2018 — 2020</div>
