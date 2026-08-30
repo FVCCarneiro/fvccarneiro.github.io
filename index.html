@@ -473,16 +473,16 @@
 
         <article class="pcard reveal more-project">
           <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
-          <h3>Churn Me &amp; Downsell Me</h3>
-          <p>Managed Admin APIs that automate company- and client-management processes, and exposed them to HubSpot — so business teams trigger and run these operations directly from their CRM.</p>
-          <div class="tags"><span>Admin API</span><span>HubSpot</span><span>Python</span><span>Automation</span></div>
+          <h3>Client retention &amp; downsell services</h3>
+          <p>Built the front end and extended the admin APIs behind revenue-impacting business services like client churn and downsell workflows, adding new functionality as the business needed it, then exposed the same operations to HubSpot so business teams can trigger them directly from their CRM.</p>
+          <div class="tags"><span>API</span><span>Frontend</span><span>HubSpot</span><span>Python</span><span>Automation</span></div>
         </article>
 
         <article class="pcard reveal more-project">
           <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
           <h3>Airbyte migration to Kubernetes</h3>
-          <p>Migrated Airbyte from a single-VM deployment to a Kubernetes cluster — moving batch data collection onto scalable, container-orchestrated infrastructure.</p>
-          <div class="tags"><span>Airbyte</span><span>Kubernetes</span><span>GKE</span><span>Docker</span><span>Infrastructure</span></div>
+          <p>Migrated Airbyte from a single-VM deployment to a GKE cluster on GCP, adapting Airbyte's official Helm chart into our Terraform stack. Kept the cluster and its Airbyte API off the public internet, routing access through a dedicated bastion host instead.</p>
+          <div class="tags"><span>Airbyte</span><span>Kubernetes</span><span>GKE</span><span>Helm</span><span>Terraform</span><span>Bastion host</span></div>
         </article>
 
         <article class="pcard reveal">
@@ -490,6 +490,13 @@
           <h3>AI enablement for analytics</h3>
           <p>Building an AI context layer over the analytics platform — Looker MCP for natural-language exploration, with structured context across data-engineering repos — so LLM tooling works reliably against real company data.</p>
           <div class="tags"><span>Looker MCP</span><span>LLM context</span><span>dbt</span><span>Analytics</span></div>
+        </article>
+
+        <article class="pcard reveal more-project">
+          <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
+          <h3>Embedded analytics for partners</h3>
+          <p>Embedded Looker dashboards directly into HubSpot using signed embed URLs, giving partners self-serve visibility scoped strictly to their own data.</p>
+          <div class="tags"><span>Looker</span><span>Embedded Analytics</span><span>Signed URLs</span><span>HubSpot</span></div>
         </article>
 
         <article class="pcard reveal">
@@ -513,7 +520,7 @@
       </div>
 
       <button type="button" class="show-more reveal" id="projToggle" aria-expanded="false">
-        <span>Show 4 more projects</span>
+        <span>Show 5 more projects</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
     </div>
@@ -736,7 +743,7 @@
     btn.addEventListener('click', function(){
       var expanded = grid.classList.toggle('expanded');
       btn.setAttribute('aria-expanded', expanded);
-      btn.querySelector('span').textContent = expanded ? 'Show fewer projects' : 'Show 4 more projects';
+      btn.querySelector('span').textContent = expanded ? 'Show fewer projects' : 'Show 5 more projects';
       if(expanded){
         grid.querySelectorAll('.more-project').forEach(function(el){ el.classList.add('in'); });
       }
