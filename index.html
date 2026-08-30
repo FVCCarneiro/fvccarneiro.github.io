@@ -453,8 +453,8 @@
         <article class="pcard reveal more-project">
           <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
           <h3>Churn Me &amp; Downsell Me</h3>
-          <p>Managed Admin APIs that automate company- and client-management processes, and exposed them to HubSpot — so business teams trigger and run these operations directly from their CRM.</p>
-          <div class="tags"><span>Admin API</span><span>HubSpot</span><span>Python</span><span>Automation</span></div>
+          <p>Designed and built a full-stack internal tool — API and front end — for revenue-impacting business services like client churn and downsell workflows, then exposed the same operations to HubSpot so business teams can trigger them directly from their CRM.</p>
+          <div class="tags"><span>API</span><span>Frontend</span><span>HubSpot</span><span>Python</span><span>Automation</span></div>
         </article>
 
         <article class="pcard reveal more-project">
@@ -469,6 +469,13 @@
           <h3>AI enablement for analytics</h3>
           <p>Building an AI context layer over the analytics platform — Looker MCP for natural-language exploration, with structured context across data-engineering repos — so LLM tooling works reliably against real company data.</p>
           <div class="tags"><span>Looker MCP</span><span>LLM context</span><span>dbt</span><span>Analytics</span></div>
+        </article>
+
+        <article class="pcard reveal more-project">
+          <span class="pctx">@ Agicap &nbsp;·&nbsp; Fintech</span>
+          <h3>Embedded analytics for partners</h3>
+          <p>Embedded Looker dashboards directly into HubSpot, giving partners secure, self-serve visibility into their own data without exposing the broader analytics platform.</p>
+          <div class="tags"><span>Looker</span><span>Embedded Analytics</span><span>HubSpot</span><span>Security</span></div>
         </article>
 
         <article class="pcard reveal">
@@ -492,7 +499,7 @@
       </div>
 
       <button type="button" class="show-more reveal" id="projToggle" aria-expanded="false">
-        <span>Show 4 more projects</span>
+        <span>Show 5 more projects</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
     </div>
@@ -715,7 +722,7 @@
     btn.addEventListener('click', function(){
       var expanded = grid.classList.toggle('expanded');
       btn.setAttribute('aria-expanded', expanded);
-      btn.querySelector('span').textContent = expanded ? 'Show fewer projects' : 'Show 4 more projects';
+      btn.querySelector('span').textContent = expanded ? 'Show fewer projects' : 'Show 5 more projects';
       if(expanded){
         grid.querySelectorAll('.more-project').forEach(function(el){ el.classList.add('in'); });
       }
